@@ -33,7 +33,7 @@ const FrameComponent1 = () => {
     animateCountUp(1926436, setPaymentsCount);
 
     return () => {
-      // Clear any intervals or timeouts if necessary
+    
     };
   }, []);
 

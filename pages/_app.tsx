@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
-import { ThemeProvider } from '../@/components/theme-provider';
-import "./global.css"
+import { ThemeProvider } from '../@/components/theme-provider'; 
+import './global.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -8,7 +8,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       attribute="class"
       defaultTheme="system"
       enableSystem={true}
-      disableTransitionOnChange={false}
     >
       <Component {...pageProps} />
     </ThemeProvider>

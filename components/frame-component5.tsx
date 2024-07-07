@@ -7,7 +7,7 @@ export type FrameComponent5Type = {
   className?: string;
 };
 
-// Custom hook for theme and mounting
+
 const useThemeAndMounting = () => {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);

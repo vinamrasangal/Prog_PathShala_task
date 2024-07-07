@@ -10,12 +10,12 @@ const FrameComponent3: NextPage<FrameComponent3Type> = ({ className = "" }) => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Use useEffect to handle mounting
+  
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // If the component hasn't mounted yet, return null to prevent rendering mismatch
+
   if (!mounted) return null;
 
   return (

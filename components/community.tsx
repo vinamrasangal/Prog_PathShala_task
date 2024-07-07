@@ -7,7 +7,7 @@ export type CommunityType = {
   className?: string;
 };
 
-// Custom hook for theme and mounting
+
 const useThemeAndMounting = () => {
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);

@@ -34,7 +34,7 @@ const Carousel: React.FC<CarouselProps> = ({
   }, [autoSlide, autoSlideInterval]);
 
   if (!slides || slides.length === 0) {
-    return null; // or return a placeholder/loading state
+    return null; 
   }
 
   return (

@@ -10,7 +10,7 @@ const FrameComponent2: NextPage<FrameComponent2Type> = ({ className = "" }) => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Use useEffect to handle mounting
+ 
   useEffect(() => {
     setMounted(true);
   }, []);

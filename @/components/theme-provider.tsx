@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, ReactNode, useContext } from 'react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
 interface ThemeContextType {
@@ -6,21 +6,22 @@ interface ThemeContextType {
   toggleDarkMode: () => void;
 }
 
-export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextType>({
+  darkMode: false,
+  toggleDarkMode: () => {},
+});
 
-export function ThemeProvider({
+export const ThemeProvider = ({
   children,
   attribute,
   defaultTheme,
   enableSystem,
-  disableTransitionOnChange,
 }: {
   children: ReactNode;
   attribute: string;
   defaultTheme: string;
   enableSystem: boolean;
-  disableTransitionOnChange: boolean;
-}) {
+}) => {
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
   const toggleDarkMode = () => {
@@ -32,11 +33,10 @@ export function ThemeProvider({
       attribute={attribute}
       defaultTheme={defaultTheme}
       enableSystem={enableSystem}
-      disableTransitionOnChange={disableTransitionOnChange}
     >
       <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
         {children}
       </ThemeContext.Provider>
     </NextThemesProvider>
   );
-}
+};
