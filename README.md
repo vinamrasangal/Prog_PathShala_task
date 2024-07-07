@@ -1,4 +1,4 @@
-Fromtend modern design Website
+Frontend modern design Website
 Technologies Used:
  1) TypeScript
  2) Next.js
