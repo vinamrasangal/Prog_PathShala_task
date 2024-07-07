@@ -1,17 +1,13 @@
-import { AppProps } from 'next/app';
-import { ThemeProvider } from '../@/components/theme-provider'; 
-import './global.css';
+// pages/_app.tsx
 
-function MyApp({ Component, pageProps }: AppProps) {
+import type { AppProps } from 'next/app'
+import { ThemeProvider } from "../@/components/theme-provider"
+import './global.css'
+
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem={true}
-    >
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <Component {...pageProps} />
     </ThemeProvider>
-  );
+  )
 }
-
-export default MyApp;

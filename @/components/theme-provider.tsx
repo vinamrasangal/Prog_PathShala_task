@@ -1,42 +1,42 @@
-import { createContext, useState, ReactNode, useContext } from 'react';
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
+// @/components/theme-provider.tsx
+
+"use client"
+
+import React, { createContext, useState, useEffect, ReactNode } from 'react'
+import { ThemeProvider as NextThemesProvider } from "next-themes"
 
 interface ThemeContextType {
   darkMode: boolean;
   toggleDarkMode: () => void;
 }
 
-export const ThemeContext = createContext<ThemeContextType>({
-  darkMode: false,
-  toggleDarkMode: () => {},
-});
+export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider = ({
-  children,
-  attribute,
-  defaultTheme,
-  enableSystem,
-}: {
+interface ThemeProviderProps {
   children: ReactNode;
-  attribute: string;
-  defaultTheme: string;
-  enableSystem: boolean;
-}) => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  attribute?: string;
+  defaultTheme?: string;
+  enableSystem?: boolean;
+}
+
+export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
-    setDarkMode((prevMode) => !prevMode);
+    setDarkMode(prev => !prev);
   };
 
+  useEffect(() => {
+    // Sync darkMode state with next-themes
+    const isDark = document.documentElement.classList.contains('dark');
+    setDarkMode(isDark);
+  }, []);
+
   return (
-    <NextThemesProvider
-      attribute={attribute}
-      defaultTheme={defaultTheme}
-      enableSystem={enableSystem}
-    >
-      <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
+    <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
+      <NextThemesProvider {...props}>
         {children}
-      </ThemeContext.Provider>
-    </NextThemesProvider>
+      </NextThemesProvider>
+    </ThemeContext.Provider>
   );
-};
+}
